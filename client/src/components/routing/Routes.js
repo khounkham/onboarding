@@ -2,6 +2,12 @@ import React from 'react'
 import {Route, Switch} from 'react-router-dom';
 import Login from '../auth/Login';
 import Register from '../auth/Register';
+import Onboarding from '../onboardings/Onboarding';
+import Onboarders from '../onboardings/Onboarders';
+import Report from '../reports/Report';
+import Goals from '../preferences/Goals';
+import Monitoring from '../evaluation/Monitoring';
+
 import About from '../auth/About';
 import Alert from '../layout/Alert';
 import Dashboard from '../dashboard/Dashboard';
@@ -26,6 +32,11 @@ export const Routes = () => {
           <Route exact path="/profiles" component ={Profiles}/> 
           <Route exact path="/profile/:id" component ={Profile}/>
           <Route exact path="/about" component ={About}/>
+          <Route exact path="/onboarding" component ={Onboarding}/>
+          <Route exact path="/report" component ={Report}/>
+          <Route exact path="/goal" component ={Goals}/>
+          <Route exact path="/monitoring" component ={Monitoring}/> 
+          <Route exact path="/onboarders" component ={Onboarders}/>        
 
           <PrivateRoute exact path="/dashboard" component ={Dashboard}/> 
           <PrivateRoute exact path="/create-profile" component ={CreateProfile} />

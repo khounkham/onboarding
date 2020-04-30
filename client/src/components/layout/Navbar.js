@@ -9,13 +9,31 @@ const Navbar = ({auth:{ isAuthenticated, loading}, logout}) => {
 
   const authLinks = (
     <ul>
-      <li>
-            <Link to="/profiles">
-            Students/Developers </Link>
+       <li>
+            <Link to="/about">About</Link>
+        </li>
+        <li>
+            <Link to="/report">Reports</Link>
+        </li>
+        <li>
+            <Link to="/goal">Preferences </Link>
+        </li>
+        <li>
+            <Link to="/monitoring">Onboarding Assessment</Link>
+        </li>
+        <li>
+            <Link to="/onboarding">Onboarding Design</Link>
+        </li>
+        <li>
+            <Link to="/onboarders">Onboarder Info</Link>
         </li>
         <li>
             <Link to="/posts">
             Posts </Link>
+        </li>
+        <li>
+            <Link to="/profiles">
+            Developers </Link>
         </li>
         <li>
             <Link to="/dashboard">
@@ -32,12 +50,10 @@ const Navbar = ({auth:{ isAuthenticated, loading}, logout}) => {
 
   const guestLinks = (
         <ul>
-        <li>
-            <Link to="/about">About</Link>
-        </li>
+       
         <li>
             <Link to="/profiles">
-            Students/Developers </Link>
+            Developers </Link>
         </li>
         <li>
             <Link to="/register">Register</Link>
@@ -52,7 +68,7 @@ const Navbar = ({auth:{ isAuthenticated, loading}, logout}) => {
     <nav className="navbar bg-dark">
       <h1>
         <Link to="/">
-            <i className="fas fa-code"></i> Welcome to LASA Connection
+            <i className="fas fa-code"></i> Onboarding Management System
         </Link>
       </h1>
     { !loading && (<Fragment> {isAuthenticated? authLinks : guestLinks} </Fragment>)}

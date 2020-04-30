@@ -12,10 +12,9 @@ const Landing = ( {isAuthenticated}) => {
         <section className="Mainlanding">
         <div className="dark-overlay">
           <div className="landing-inner">
-            <h1 className="x-large">Lao Student Association, Newzealand</h1>
+            <h1 className="x-large">Personalizing Onboarding Program Design</h1>
             <p className="lead">
-              Student profile/portfolio, share posts and get help from
-              other students
+              Onboarding goals, techniques and monitoring in Agile Software Development
             </p>
             <div className="buttons">
               <Link to="/register" className="btn btn-primary">Sign Up</Link>

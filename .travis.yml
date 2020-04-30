@@ -1,12 +1,5 @@
 language: node_js
 node_js:
   - "node"
-
 services:
   - mongodb
-
-deploy:
-  provider: heroku
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN
-  on: develop

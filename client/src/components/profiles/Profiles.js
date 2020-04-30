@@ -12,9 +12,9 @@ const Profiles = ({getProfiles, profile:{profiles, loading}}) => {
 
     return <Fragment>
         { loading ?  <Spinner /> : <Fragment>
-                <h1 className="large text-primary"> Students/Communities</h1>
+                <h1 className="large text-primary"> Software Engineers/Developers </h1>
                 <p className='lead'>
-                    <i className="fab fa-connectdevelop"></i> Browse and connect with students / communities...
+                    <i className="fab fa-connectdevelop"></i> Browse and connect with team members
                 </p>
                 <div className="profiles">
                     {profiles.length>0 ? (
