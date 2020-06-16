@@ -31,7 +31,6 @@ const Navbar = ({auth:{ isAuthenticated, loading}, logout}) => {
          {/*  <li><Link to="/about">About</Link></li>
           <li><Link to="/report">Reports</Link></li> */}
           <li><Link to="/goal">Preferences </Link></li>
-          
           <li><Link to="/onboarding">New Design</Link></li>
           <li><Link to="/onboarders">Existing Onboarders</Link></li>
           <li><Link to="/monitoring">Onboarding Monitor</Link></li>
