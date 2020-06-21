@@ -40,7 +40,7 @@ const App = () => {
 
     </Fragment>
   </Router>
-  </Provider>
+</Provider>
 )
 };
 export default App;

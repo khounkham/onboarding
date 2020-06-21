@@ -1,5 +1,24 @@
 import React from "react";
 const CompanyMethodology = (props) => {
+
+  const tools = [
+    {
+      name: 'asana',
+      label: 'Asana'
+    },
+    {
+      name: 'a=jira',
+      label: 'Ajira'
+    },
+    {
+      name: 'foo',
+      label: 'Foo'
+    },
+    {
+      name: 'test',
+      label: 'test'
+    }];
+
   return (
     props.methodologyList.map((val, idx) => {
       let methodologyName =`methodologyName-${idx}`
@@ -7,9 +26,7 @@ const CompanyMethodology = (props) => {
         <tr key={val.index}>
           <td className="">
             <select  name="methodologyName" id={methodologyName} data-id={idx} className="collection-container">
-              <option value="Agile">Agile</option>
-              <option value="Xp">XP</option>
-              <option value="Water fall">Water fall</option>
+            {tools.map(t => (<option value={t.name}>{t.label}</option>))}
             </select>
           </td>
           <td>

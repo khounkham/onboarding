@@ -21,6 +21,7 @@ import Post from '../post/Post';
 import NotFound from '../NotFound';
 import Profile from '../profile/Profile';
 import PrivateRoute from '../routing/PrivateRoute';
+import OnboardingForm from '../layout/OnboardingForm';
 
 export const Routes = () => {
     return (
@@ -32,7 +33,7 @@ export const Routes = () => {
           <Route exact path="/profiles" component ={Profiles}/> 
           <Route exact path="/profile/:id" component ={Profile}/>
           <Route exact path="/about" component ={About}/>
-          <Route exact path="/onboarding" component ={Onboarding}/>
+          <Route exact path="/onboarding" component ={OnboardingForm}/>
           <Route exact path="/report" component ={Report}/>
           <Route exact path="/goal" component ={Goals}/>
           <Route exact path="/monitoring" component ={Monitoring}/> 
