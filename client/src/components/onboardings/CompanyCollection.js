@@ -20,26 +20,25 @@ const CompanyCollection = (props) => {
       label: 'test'
     }];
 
- const [selectValue, setState]= useState([])
+//  const [selectValue, setState]= useState([])
 
- const handleChange = (e) => {
-  setState({selectValue:e.target.value});
-  //setState({[e.target.name]: e.target.value});
-}
+//  const handleChange = (e) => {
+//   setState({selectValue:e.target.value});
+//   //setState({[e.target.name]: e.target.value});
+// }
 
   return (
     props.collectionList.map((val, idx) => {
       let collectionName =`collectionName-${idx}`
-      let questions=`How are you familiar with ${val.selectValue}`
+      //let questions=`How are you familiar with ${val.selectValue}`
       //console.log(questions);
       return(
         <tr key={val.index} className="form-group">
           <td className="form-group">
-            <select  name="collectionName" id={collectionName} data-id={idx} className="collection-container" onChange={handleChange} 
-            value={val.selectValue}>
+            <select  name="collectionName" id={collectionName} data-id={idx} className="collection-container">
               {tools.map(t => (<option value={t.name}>{t.label}</option>))}
             </select>
-            {console.log(questions)}          
+                     
             </td>
           <td></td>
           <td>
