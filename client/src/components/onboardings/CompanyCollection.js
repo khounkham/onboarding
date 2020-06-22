@@ -1,4 +1,4 @@
-import React, {createClass} from "react";
+import React, {useState} from "react";
 import axios from 'axios';
 const CompanyCollection = (props) => {
   // const tools = await axios.get()
@@ -20,28 +20,27 @@ const CompanyCollection = (props) => {
       label: 'test'
     }];
 
-const managementtoolSelector = createClass({
-  getInitialState:function(){
-    return {selectValue:''};
-},
-  handleChange:function(e){
-  this.setState({selectValue:e.target.value});
-}})
+ const [selectValue, setState]= useState([])
+
+ const handleChange = (e) => {
+  setState({selectValue:e.target.value});
+  //setState({[e.target.name]: e.target.value});
+}
 
   return (
     props.collectionList.map((val, idx) => {
       let collectionName =`collectionName-${idx}`
-      let questions='How are you familiar with'+this.state.selectValue;
+      let questions=`How are you familiar with ${val.selectValue}`
       //console.log(questions);
       return(
         <tr key={val.index} className="form-group">
           <td className="form-group">
-            <select  name="collectionName" id={collectionName} data-id={idx} className="collection-container" onChange={this.handleChange} 
-            value={this.state.selectValue}>
+            <select  name="collectionName" id={collectionName} data-id={idx} className="collection-container" onChange={handleChange} 
+            value={val.selectValue}>
               {tools.map(t => (<option value={t.name}>{t.label}</option>))}
             </select>
-            <p>{questions}</p>
-          </td>
+            {console.log(questions)}          
+            </td>
           <td></td>
           <td>
           {

@@ -203,7 +203,7 @@ class Onboarding extends Component {
                         <br/>
                         <div><p className="lead"><i className="fas fa-user"></i> 
                             Onboarder's characteristics</p></div><br/>
-                            {
+                           {/*  {
                           [this.collectionList].map(tech =>
                                   (<form>
                                   <div>
@@ -220,7 +220,7 @@ class Onboarding extends Component {
                                   </form>
                                   )
                                   )
-                          }
+                          } */}
                         <br/><br/>
                         <div className="card-footer text-center">
                             <button type="submit" className="btn btn-primary text-center" onClick="">Continue</button>
