@@ -18,7 +18,10 @@ app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
-app.use('/api/onboarding', require('./routes/api/onboarding'));
+app.use('/api/companyprofile', require('./routes/api/companyprofile'));
+app.use('/api/projectprofile', require('./routes/api/projectprofile'));
+app.use('/api/onboarder', require('./routes/api/onboarder'));
+//app.use('/api/managementtool', require('./routes/api/managementtool'));
 
 // Serve static assets in production
 
