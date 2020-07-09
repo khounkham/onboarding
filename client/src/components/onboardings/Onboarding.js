@@ -117,7 +117,7 @@ const onChangeCompanyName = e => {
 }
 const onChangescoreOfMgtTool = e => {
   console.log('setScoreOfMgtTool', e.target.value);
-  setScoreOfMgtTool({...scoreOfMgtTool, [e.target.name]: e.target.value});
+  setScoreOfMgtTool(e.target.value);
 }
 
 // const generateQuestion = 
@@ -382,7 +382,7 @@ const clickOnDelete5 = (record) => {
             </table>
 
             <div>
-              <div><GenerateQuestionMgtTool collectionList={collectionList} onChangescoreOfMgtTool={onChangescoreOfMgtTool}/></div>
+              <div><GenerateQuestionMgtTool collectionList={collectionList} onChangescoreOfMgtTool={onChangescoreOfMgtTool} scoreOfMgtTool={scoreOfMgtTool}/></div>
               
               </div>                   
                     <p style={{fontSize:14}}><b>Have you ever work in this team or with some of the team members ?</b></p>
