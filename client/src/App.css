@@ -679,12 +679,13 @@ input[type='text'], input[type='number'], [type='textarea'], select[type='dropdo
             padding-left: 30px;
             margin-bottom: 10px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 15px;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
-            margin-left: 15px;
+            margin-left: 20px;
+            float: left;
           }
 
           /* Hide the browser's default radio button */
@@ -703,7 +704,8 @@ input[type='text'], input[type='number'], [type='textarea'], select[type='dropdo
             width: 20px;
             background-color: #eee;
             border-radius: 45%;
-           
+            
+            margin-right:20px;
           }
 
           /* On mouse-over, add a grey background color */

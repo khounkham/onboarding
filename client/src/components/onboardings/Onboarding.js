@@ -44,7 +44,7 @@ const [formData, setFormData]= useState ({
   developmenttechList: [{ index: Math.random(), developmenttechName: ""}],
   onboarderName: '',
   onboarderEmail: '',
-  //scoreOfMgtTool:[],
+  scoreOfMgtTool:[{index: Math.random(), mgtTool: ""}],
   scoreOfMethod:[],
   scoreOfProLanguage:[],
   scoreOfFramework:[],
@@ -75,7 +75,7 @@ const [formData, setFormData]= useState ({
     developmenttechList,
     onboarderName,
     onboarderEmail,
-    //scoreOfMgtTool,
+    scoreOfMgtTool,
     scoreOfMethod,
     scoreOfProLanguage,
     scoreOfFramework,
@@ -95,7 +95,7 @@ const [formData, setFormData]= useState ({
   } 
   = formData;
 
-const [scoreOfMgtTool, setScoreOfMgtTool] = useState('option1');
+//const [scoreOfMgtTool, setScoreOfMgtTool] = useState();
 //const {valueRadios} = formData;
 // const onChangeRadios = e => {
 //   console.log('onChangeRadios', e.target.value)
@@ -115,9 +115,12 @@ const onChangeCompanyName = e => {
   //console.log('onChangeCompanyName', e.target);
   setFormData({...formData, [e.target.name]: e.target.value});
 }
-const onChangescoreOfMgtTool = e => {
-  console.log('setScoreOfMgtTool', e.target.value);
-  setScoreOfMgtTool(e.target.value);
+const onChangescoreOfMgtTool = (i,v) => {
+  const newList = [...scoreOfMgtTool];
+  newList[i].mgtTool = v;
+  setFormData({...formData,
+    scoreOfMgtTool: newList,
+  });
 }
 
 // const generateQuestion = 
@@ -125,7 +128,7 @@ const onChangeCollectionList = (i, v) => {
   const newList = [...collectionList];
   newList[i].collectionName = v;
   setFormData({...formData,
-    collectionList: newList,
+    collectionList: newList
   });
 }
 
