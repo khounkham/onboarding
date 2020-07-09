@@ -1,10 +1,11 @@
 import axios from 'axios';
 import {setAlert} from './alert';
 import {
-  NEWONBOARDING_SAVEDATA_SUCCESS,
-  NEWONBOARDING_SAVEDATA_FAIL
+  NEWONBOARDING_CAPTUREDATA_SUCCESS,
+  NEWONBOARDING_CAPTUREDATA_FAIL
 } from './types';
-// New onboarding 
+
+// Capturing data of newonboarder 
 export const onboarding = ({ 
     companyName,
     companyDescription,

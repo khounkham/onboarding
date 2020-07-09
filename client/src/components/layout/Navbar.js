@@ -11,16 +11,20 @@ const Navbar = ({auth:{ isAuthenticated, loading}, logout}) => {
     <ul>
        {/*  <li><Link to="/posts">Posts </Link></li>
         <li><Link to="/profiles">Developers </Link></li> */}
-      
-        <li>
+        <li><Link to="/goal">Preferences </Link></li>
+        <li><Link to="/monitoring">Onboarding Monitor</Link></li>
+        <li><Link to="/onboarding">New Design</Link></li>
+        {/* <li>
             <Link to="/dashboard">
             <i className="fas fa-user"/><span className= "hide-sm">Dashboard</span></Link>
-        </li>
-     {/*  <li>
+        </li> */}
+
+      <li>
             <a onClick = {logout} href='#!'>
             <i className="fas fa-sign-out-alt"/>{''} 
             <span className= "hide-sm">Logout</span></a>
-      </li> */}
+      </li>
+      
     </ul>
 
   );
@@ -30,24 +34,24 @@ const Navbar = ({auth:{ isAuthenticated, loading}, logout}) => {
         <ul>
          {/*  <li><Link to="/about">About</Link></li>
           <li><Link to="/report">Reports</Link></li> */}
-          <li><Link to="/goal">Preferences </Link></li>
-          <li><Link to="/onboarding">New Design</Link></li>
+          
+         
          {/*  <li><Link to="#!">Existing Onboarders</Link></li> */}
-          <li><Link to="/monitoring">Onboarding Monitor</Link></li>
-          {/*  <li><Link to="/profiles">Developers </Link></li>
+          
+           <li><Link to="/profiles">Developers </Link></li>
             <li><Link to="/register">Register</Link></li>
-            <li><Link to="/login">Login</Link></li> */}
+            <li><Link to="/login">Login</Link></li>
         </ul> 
 
   );
 
     return (
     <nav className="navbar bg-dark">
-      <h1>
+      <h4>
         <Link to="/">
             <i className="fas fa-code"></i> Onboarding Management System
         </Link>
-      </h1>
+      </h4>
     { !loading && (<Fragment> {isAuthenticated? authLinks : guestLinks} </Fragment>)}
     </nav>
     )

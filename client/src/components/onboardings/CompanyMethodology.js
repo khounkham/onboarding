@@ -23,17 +23,17 @@ const CompanyMethodology = (props) => {
     props.methodologyList.map((val, idx) => {
       let methodologyName =`methodologyName-${idx}`
       return(
-        <tr key={val.index}>
+        <tr key={val.index} style={{margin: 1, width:720, height: 20, border:0}}>
           <td className="">
-            <select  name="methodologyName" id={methodologyName} data-id={idx} className="collection-container">
+            <select  name="methodologyName" id={methodologyName} data-id={idx} className="collection-container" style={{width:500}}>
             {tools.map(t => (<option value={t.name}>{t.label}</option>))}
             </select>
           </td>
           <td>
-          {
-            idx===0?<button onClick={()=>props.add()} type="button" className="btn btn-primary text-center"><i className="fa fa-plus-circle" aria-hidden="true"></i></button>
-            : <button className="btn btn-danger" onClick={(()=>props.delete(val))}><i className="fa fa-minus" aria-hidden="true"></i></button>
-          }
+          { 
+                  idx===0?<button onClick={()=>props.add()} className="btn add-btn" type="button" style={{position: "relative"}}>+</button>
+                  : <button className="btn add-btn" style={{position: "relative"}} type="button" onClick={(()=>props.delete(val))}>-</button>
+                  }
           </td>
         </tr>
       )}

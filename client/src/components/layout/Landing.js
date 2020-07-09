@@ -12,7 +12,7 @@ const Landing = ( {isAuthenticated}) => {
         <section className="Mainlanding">
         <div className="dark-overlay">
           <div className="landing-inner">
-            <h1 className="x-large">Personalizing Team Onboarding in Agile Software Development</h1>
+            <h2 className="x-large">Personalizing Team Onboarding in Agile Software Development</h2>
             <p className="lead">
               Onboarding goals, techniques and monitoring in Agile Software Development
             </p>

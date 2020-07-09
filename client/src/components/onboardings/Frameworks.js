@@ -1,22 +1,34 @@
 import React from "react";
 const Frameworks = (props) => {
+  const framework = [
+    {
+      name: 'django',
+      label: 'django'
+    },
+    {
+      name: 'RubyonRails',
+      label: 'Ruby on rails'
+    },
+    {
+      name: 'React',
+      label: 'React'
+    }];
   return (
     props.frameworkList.map((val, idx) => {
       let frameworkName =`frameworkName-${idx}`
       return(
-        <tr key={val.index}>
+        <tr key={val.index} style={{margin: 1, width:720, height: 20, border:1}}>
           <td className="">
-            <select  name="frameworkName" id={frameworkName} data-id={idx} className="collection-container">
-              <option value="Agile">Django</option>
-              <option value="Xp">Ruby on rails</option>
-              <option value="Water fall">PHP cake</option>
+            <select name="frameworkName" id={frameworkName} data-id={idx} style={{margin: 1, width:500}} className="form-control">
+              {framework.map(f=>(<option value={f.name}>{f.label}</option>))}
             </select>
           </td>
           <tr>
-          {
-            idx===0?<button onClick={()=>props.add()} type="button" className="btn btn-primary text-center"><i className="fa fa-plus-circle" aria-hidden="true"></i></button>
-            : <button className="btn btn-danger" onClick={(()=>props.delete(val))}><i className="fa fa-minus" aria-hidden="true"></i></button>
-          }
+            <td>{ 
+                  idx===0?<button onClick={()=>props.add()} className="btn add-btn" type="button" style={{position: "relative"}}>+</button>
+                  : <button className="btn btn-danger" style={{position: "relative"}} type="button" onClick={(()=>props.delete(val))}>-</button>
+                  }
+            </td>
           </tr>
         </tr>
       )}

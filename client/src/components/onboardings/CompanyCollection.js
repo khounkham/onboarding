@@ -1,53 +1,53 @@
-import React, {useState} from "react";
-import axios from 'axios';
+import React, {useState, Fragment} from "react";
+//import axios from 'axios';
 const CompanyCollection = (props) => {
-  // const tools = await axios.get()
   const tools = [
     {
-      name: 'asana',
+      name: 'Asana',
       label: 'Asana'
     },
     {
-      name: 'a=jira',
-      label: 'Ajira'
+      name: 'Jira',
+      label: 'Jira'
     },
     {
-      name: 'foo',
-      label: 'Foo'
+      name: 'Monday.com',
+      label: 'Monday.com'
     },
     {
-      name: 'test',
-      label: 'test'
+      name: 'Trello',
+      label: 'Trello'
     }];
 
-//  const [selectValue, setState]= useState([])
+    //const onChangeDropList = e => setFormData({...[e.target.name]:e.target.value});
+    const onChangeSelect = (i, e) => {
+      //props.generateQuestion(e.target.value)
+      console.log('selected', e.target.value);
+      props.onChangeCollectionList(i, e.target.value);
+    };
 
-//  const handleChange = (e) => {
-//   setState({selectValue:e.target.value});
-//   //setState({[e.target.name]: e.target.value});
-// }
-
-  return (
+    console.log('props of companyCollectioin', props)
+    return (
     props.collectionList.map((val, idx) => {
-      let collectionName =`collectionName-${idx}`
-      //let questions=`How are you familiar with ${val.selectValue}`
-      //console.log(questions);
+     const collectionName =`collectionName-${idx}`;
       return(
-        <tr key={val.index} className="form-group">
-          <td className="form-group">
-            <select  name="collectionName" id={collectionName} data-id={idx} className="collection-container">
-              {tools.map(t => (<option value={t.name}>{t.label}</option>))}
-            </select>
-                     
-            </td>
-          <td></td>
-          <td>
-          {
-            idx===0?<button onClick={()=>props.add()} type="button" className="btn btn-primary text-center"><i className="fa fa-plus-circle" aria-hidden="true"></i></button>
-            : <button className="btn btn-danger btn-primary" onClick={(()=>props.delete(val))}><i className="fa fa-minus" aria-hidden="true"></i></button>
-          }
-          </td>
-        </tr>
-      )}
-    ))}
+          <Fragment>
+            <tr key={val.index} style={{margin: 1, width:720, height: 20, border:0}}>
+                  <td style={{margin: 1}}>
+                    <select name="collectionName" id={collectionName} data-id={idx} style={{margin: 1, width:500}} 
+                    className="form-control" onChange={e => onChangeSelect(idx, e)}
+                    value={val.collectionName}> 
+                      {tools.map(t => (<option value={t.name}>{t.label}</option>))}
+                    </select>
+                  </td>
+                  <td>
+                    { 
+                    idx===0?<button onClick={()=>props.add()} className="btn add-btn" type="button" style={{position: "relative"}}>+</button>
+                    : <button className="btn btn-danger" style={{position: "relative"}} type="button" onClick={(()=>props.delete(val))}>-</button>
+                    }
+                  </td>
+            </tr>
+        </Fragment>
+      )}))};
+    
 export default CompanyCollection

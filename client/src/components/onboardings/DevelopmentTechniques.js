@@ -1,5 +1,18 @@
 import React from "react";
 const DevelopmentTech = (props) => {
+  const devtech = [
+    {
+      name: 'TDD',
+      label: 'TDD'
+    },
+    {
+      name: 'RubyonRails',
+      label: 'Ruby on rails'
+    },
+    {
+      name: 'React',
+      label: 'React'
+    }];
   return (
     props.developmenttechList.map((val, idx) => {
       let developmenttechName =`methodologyName-${idx}`
@@ -7,17 +20,14 @@ const DevelopmentTech = (props) => {
         <tr key={val.index}>
           <td className="">
             <select  name="developmenttechName" id={developmenttechName} data-id={idx} className="collection-container">
-              <option value="Agile">TDD</option>
-              <option value="Xp">...</option>
-              <option value="Water fall">...</option>
+            {devtech.map(devt=>(<option value={devt.name}>{devt.label}</option>))}
             </select>
           </td>
-          <td>
-          {
-            idx===0?<button onClick={()=>props.add()} type="button" className="btn btn-primary text-center"><i className="fa fa-plus-circle" aria-hidden="true"></i></button>
-            : <button className="btn btn-danger" onClick={(()=>props.delete(val))}><i className="fa fa-minus" aria-hidden="true"></i></button>
-          }
-          </td>
+          <td>{ 
+                  idx===0?<button onClick={()=>props.add()} className="btn add-btn" type="button" style={{position: "relative"}}>+</button>
+                  : <button className="btn btn-danger" style={{position: "relative"}} type="button" onClick={(()=>props.delete(val))}>-</button>
+                  }
+              </td>
         </tr>
       )}
     ))}

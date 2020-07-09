@@ -5,6 +5,7 @@ import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Routes from './components/routing/Routes';
 
+
 //Redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -12,6 +13,9 @@ import { loadUser } from './actions/auth';
 import setAuthToken from './Utils/setAuthToken';
 
 import './App.css';
+//materialize-css
+//import 'materialize-css/dist/css/materialize.min.css';
+//import M from 'materialize-css/dist/js/materialize.min.js';
 
 if (localStorage.token){
   setAuthToken (localStorage.token);
@@ -20,6 +24,8 @@ if (localStorage.token){
 const App = () => { 
   useEffect(()=> {
     store.dispatch(loadUser());
+    //Init Materialize JS
+   // M.AutoInit();
   }, []); 
 
   return(
