@@ -26,11 +26,12 @@ import {default as MaterialRadioGroup} from '@material-ui/core/RadioGRoup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import { withTheme } from '@material-ui/core';
 
 //const container = useStyles();
 
 const Onboarding = () => {
-  
+
 const [formData, setFormData]= useState ({
   companyName: '',
   companyDescription: '',
@@ -45,12 +46,12 @@ const [formData, setFormData]= useState ({
   onboarderName: '',
   onboarderEmail: '',
   scoreOfMgtTool:[{index: Math.random(), mgtTool: ""}],
-  scoreOfMethod:[],
-  scoreOfProLanguage:[],
-  scoreOfFramework:[],
-  scoreOfDb:[],
-  scoreOfDevpTech:[],
-  ScoreOfquestionGoal1:'',
+  scoreOfMethod:[{index: Math.random(), mgtMethod: ""}],
+  scoreOfProLanguage:[{index: Math.random(), proLanguage: ""}],
+  scoreOfFramework:[{index: Math.random(), devFramework: ""}],
+  scoreOfDb:[{index: Math.random(), devDB: ""}],
+  scoreOfDevpTech:[{index: Math.random(), devTech: ""}],
+  //ScoreOfquestionGoal1:'',
   ScoreOfquestionGoal2:'',
   ScoreOfquestionGoal3:'',
   ScoreOfquestionGoal4:'',
@@ -62,6 +63,11 @@ const [formData, setFormData]= useState ({
   ScoreOfquestionGoal10:'',
   ScoreOfquestionGoal11:''
   });
+  const [ScoreOfquestionGoal1, setScoreOfquestionGoal1] = useState('');
+  const [workingExperience, setWorkingExperience] = useState('0-3');
+
+  const [isNotNewtoCompany, setIsNotNewtoCompany] = useState(false);
+
   const {
     companyName,
     companyDescription,
@@ -81,7 +87,7 @@ const [formData, setFormData]= useState ({
     scoreOfFramework,
     scoreOfDb,
     scoreOfDevpTech,
-    ScoreOfquestionGoal1,
+    //ScoreOfquestionGoal1,
     ScoreOfquestionGoal2,
     ScoreOfquestionGoal3,
     ScoreOfquestionGoal4,
@@ -117,13 +123,13 @@ const onChangeCompanyName = e => {
 }
 const onChangescoreOfMgtTool = (i,v) => {
   const newList = [...scoreOfMgtTool];
-  newList[i].mgtTool = v;
+  newList[i] = v;
   setFormData({...formData,
     scoreOfMgtTool: newList,
   });
 }
 
-// const generateQuestion = 
+// const generateQuestion  
 const onChangeCollectionList = (i, v) => {
   const newList = [...collectionList];
   newList[i].collectionName = v;
@@ -204,8 +210,10 @@ const deteteRow5 = (index) => {
 
 const clickOnDelete = (record) => {
         setFormData({...formData,
-          collectionList: collectionList.filter(r => r !== record)
+          collectionList: collectionList.filter(r => r !== record),
+          scoreOfMgtTool: scoreOfMgtTool.filter(r => r !== record)
         });
+
       }
 const clickOnDelete1 = (record) => {
           setFormData({methodologyList: this.state.methodologyList.filter(r => r !== record)
@@ -229,306 +237,250 @@ const clickOnDelete5 = (record) => {
          setFormData({developmenttechList: this.state.developmenttechList.filter(r => r !== record)
         });
         }
+// //Onchange handlers
+// const onChangeRadioButtonHandler = (e) =>{
+//     setScoreOfquestionGoal1({workingExperience: e.target.value})
+// }
 
-//const {collectionList, methodologyList, programingList, frameworkList, databaseList, developmenttechList } = this.state;
-  //const listTech = ['Asana', 'Trello', 'Slack'];
-//const loading = false;
-//console.log('state', formData);
+const handleOptionChange= (e) => {
+  setScoreOfquestionGoal1({...ScoreOfquestionGoal1, [e.target.name]: e.target.value});
+  //setIsNotNewtoCompany(true);
+  }
 
+const handleOptionChangeworkingExperience= (e) => {
+  setWorkingExperience({...workingExperience,[e.target.name]: e.target.value});
+  //console.log(handleOptionChangeworkingExperience);
+}
   return (
-    <Grid className ="container" >
-
-      {/* <head className="" style={{marginTop: 20}}><title>xx</title></head> */}
       <body>
-      <div className='container'>
-     
+        {/* <h2>Home/Navigation Here/xxx</h2> */}
+      <div className='container Maindiv-newOnboarding'>
+
       <form className="" onSubmit="">
-      <h2>New Onboarding Design</h2>
-        
-          <div><p className="lead"><i className="fas fa-user"></i>Company profile</p>
-            
+        <h2>New Onboarding Design</h2>
+          <div><p className="lead"><i className="fas fa-user"></i> Company profile</p>
             <table className="table" style={{width:710, height:20}}>
-              <th>
-                <tr style={{height: 15, width: 50}}>Company Name*</tr>
-              </th>
-              <th>
-                <tr style={{height: 15, width: 50}}>
-                  <TextField type="text" style={{width:710}} name="companyName" value={companyName} id="companyName" 
+              <th> Company Name*</th>
+              
+                <tr style={{height: 15, width: 50, background:withTheme}}>
+                  <input type="text" style={{width:708}} name="companyName" value={companyName} id="companyName" 
                   placeholder="Enter company name" onChange={onChangeCompanyName}/>
                 </tr>
-              </th>
-            </table>
-
-            <table className="table" style={{width:720, height: 20}}>
-              <tr>
-                <th style={{height: 15}}>Description</th>
-              </tr>
-              <tr>
-                <td><textarea type="textarea" value={companyDescription} name="companyDescription" placeholder="Enter company description" 
-                id="companyDescription" onChange={onChangeCompanyName}
-                style={{width:710, height: 60}}></textarea>
-                </td>
-              </tr>
-            </table>
-
-            <table className="table" style={{width:720, height: 20}}>
-                <thead>
-                    <tr>
-                    <th style={{height: 15}}>Project Management Tools*</th>
-                    </tr>
-                </thead>
-                    <td>
-                      <CompanyCollection add={addNewRow} delete={clickOnDelete} 
-                      collectionList={collectionList}
-                      onChangeCollectionList={onChangeCollectionList}/>
-                    </td>
-                <tfoot>
-                </tfoot>
-            </table>
-
-            <table className="table" style={{width:720, height: 20}}>
-              <tr>
-                <th style={{height: 15}}>Development Methodologies*</th>
-              </tr>
-                <td>
-                    <CompanyMethodology add={addNewRow1} delete={clickOnDelete1} methodologyList={methodologyList}/>
-                </td>
-            </table>
-            </div>
-            <p className="lead"><i className="fas fa-user"></i>Team/Project Profile</p>
-
-            <table className="table" style={{width:720, height:20}}>
-              <tr>
-                <th style={{height: 15}}>Team/Project Name*</th>
-              </tr>
-              <tr>
-                <td>
-                  <input type="text" style={{width:710}} name="projectName" id="projectName" 
-                  placeholder="Enter project name" />
-                </td>
-              </tr>
-            </table>
-            <table className="table" style={{width:720, height: 20}}>
-              <tr>
-                <th style={{height: 15}}>Description</th>
-              </tr>
-              <tr>
-                <td>
-                  <textarea type="textarea" name="projectDescription" placeholder="Enter team/project description" id="projectDescription" 
-                  className="" onChange={e=>(e)} 
-                  style={{width:710, height: 60}}>
-                  </textarea>
-                </td>
-              </tr>
-            </table>
-
-            <table className="table" style={{width:720, height: 20}}>
-                <thead>
-                    <tr>
-                    <th style={{height: 15}}>Programing Languages*</th>
-                    </tr>
-                </thead>
+                <th> Company Description</th>
                   <tr>
-                    <td>
-                     <PrograminLanguage add={addNewRow2} delete={clickOnDelete2.bind(this)} programingList={programingList} />
-                    </td>
+                  <textarea type="textarea" value={companyDescription} name="companyDescription" placeholder="Enter company description" 
+                  id="companyDescription" onChange={onChangeCompanyName}
+                  style={{width:708, height: 60}}></textarea>
+                  </tr>   
+                <th> Project Management Tools*</th>   
+                  <tr>
+                  <CompanyCollection add={addNewRow} delete={clickOnDelete} 
+                        collectionList={collectionList}
+                        onChangeCollectionList={onChangeCollectionList}/>
+                  </tr>
+                <th> Development Methodologies*</th>   
+                  <tr>
+                  <CompanyMethodology add={addNewRow1} delete={clickOnDelete1} 
+                        methodologyList={methodologyList}/>
                   </tr>
             </table>
-            <table className="table" style={{width:720, height: 20}}>
-              <tr>
-                <th style={{height: 15}}>Frameworks*</th>
-              </tr>
-                <td>
+            </div>
+            <p className="lead"><i className="fas fa-user"></i> Team/Project Profile</p>
+            <table className="table" style={{width:710, height:20}}>
+              <th> Team/Project Name*</th>  
+                <tr style={{height: 15, width: 50, background:withTheme}}>
+                  <input type="text" style={{width:708}} name="projectName" id="projectName" 
+                  placeholder="Enter project name" />
+                </tr>
+              <th> Description</th>  
+                <tr style={{height: 15, width: 50, background:withTheme}}>
+                  <textarea type="textarea" name="projectDescription" placeholder="Enter team/project description" id="projectDescription" 
+                  className="" onChange={e=>(e)} 
+                  style={{width:708, height: 60}}>
+                  </textarea>
+                </tr>
+              <th>Programing Languages*</th>  
+                <tr style={{height: 15, width: 50, background:withTheme}}>
+                  <PrograminLanguage add={addNewRow2} delete={clickOnDelete2.bind(this)} programingList={programingList} />
+                </tr>
+              <th>Frameworks*</th>  
+                <tr style={{height: 15, width: 50, background:withTheme}}>
                   <Frameworks add={addNewRow3} delete={clickOnDelete3.bind(this)} frameworkList={frameworkList} />
-                </td>
-            </table>
-
-            <table className="table" style={{width:720, height: 20}}>
-              <tr>
-                <th style={{height: 15}}>Databases*</th>
-              </tr>
-                <td>
+                </tr>
+              <th>Databases*</th>  
+                <tr style={{height: 15, width: 50, background:withTheme}}>
                   <Databases add={addNewRow4} delete={clickOnDelete4.bind(this)} databaseList={databaseList} />
-                </td>
+                </tr>
+              <th>Development Techniques*</th>  
+                <tr style={{height: 15, width: 50, background:withTheme}}>
+                  <DevelopmentTechs add={addNewRow5} delete={clickOnDelete5.bind(this)} developmenttechList={developmenttechList} />
+                </tr>
             </table>
-            <table className="table" style={{width:720, height: 20}}>
-              <tr>
-                <th style={{height: 15}}>Development Techniques*</th>
-              </tr>
-                <td>
-                <DevelopmentTechs add={addNewRow5} delete={clickOnDelete5.bind(this)} developmenttechList={developmenttechList} />
-                </td>
-            </table>
-              <p className="lead"><i className="fas fa-user"></i>Onboarder's characteristics</p>
-
-              <table className="table" style={{width:720, height:20}}>
-              <tr>
-                <th style={{height: 15}}>Onboarder's Name*</th>
-              </tr>
-              <tr>
-                <td>
-                  <input type="text" style={{width:710}} name="onboardername" id="onboardername" 
-                  placeholder="Enter onboarder name" onChange={e=>e} />
-                </td>
-              </tr>
-            </table>
-            <table className="table" style={{width:720, height: 20}}>
-              <tr>
-                <th style={{height: 15}}>Email*</th>
-              </tr>
-              <tr>
-                <td>
-                <input type="text"  name="onboarderEmail" id="onboarderEmail" className="form-control" 
-                placeholder="Enter onboarder email" onChange={e=>e} />
-                </td>
-              </tr>
+            <p className="lead"><i className="fas fa-user"></i> Onboarder's characteristics</p>
+            <table className="table" style={{width:710, height:20}}>
+                <th>Onboarder's Name*</th>
+                  <tr>
+                    <input type="text" style={{width:708}} name="onboardername" id="onboardername" 
+                    placeholder="Enter onboarder name" onChange={e=>e} />
+                  </tr>
+                <th>Email*</th>
+                  <tr>
+                    <input type="text" style={{width:708}} name="onboarderEmail" id="onboarderEmail" className="" 
+                    placeholder="Enter onboarder email" onChange={e=>e} />
+                  </tr>
             </table>
 
             <div>
-              <div><GenerateQuestionMgtTool collectionList={collectionList} onChangescoreOfMgtTool={onChangescoreOfMgtTool} scoreOfMgtTool={scoreOfMgtTool}/></div>
-              
-              </div>                   
-                    <p style={{fontSize:14}}><b>Have you ever work in this team or with some of the team members ?</b></p>
-                      
-                        <input name="goal2" type="radio" checked value="0<score<=3" style={{margin: 10}} />
-                        <span>Yes</span>
-                        <input name="goal2" type="radio" style={{margin: 10}}/>
-                        <span>No</span>
-                    <p style={{fontSize:14}}><b>Have you ever completed your main  responsibilities as a plan ?</b></p>
-                      
-                      <p>
-                      <label>
-                        <input name="goal3" type="radio" checked value="0<score<=3" />
-                        <span>Yes</span>
+              <GenerateQuestionMgtTool collectionList={collectionList} onChangescoreOfMgtTool={onChangescoreOfMgtTool} scoreOfMgtTool={scoreOfMgtTool} />
+            </div>
+            <table className="table" style={{width:710, height:20}}>
+                <th>Are you new to this company ?</th>
+                  <tr>
+                    <label className="containerRadio">Yes
+                          <input name="newToCompany"type="radio" checked={ScoreOfquestionGoal1} 
+                          onChange={handleOptionChange} 
+                          value={ScoreOfquestionGoal1}/>
+                          <span className="checkmarkRadio"></span>
                       </label>
-                      </p>
-                    <p>
-                      <label>
-                        <input name="goal3" type="radio" />
-                        <span>No</span>
+                      <label className="containerRadio"> No
+                          <input type="radio" name="newToCompany" checked={ScoreOfquestionGoal1} 
+                          onChange={{handleOptionChange}} 
+                          value={ScoreOfquestionGoal1} />
+                          <span className="checkmarkRadio" ></span>
+                      </label><br/>
+                                {isNotNewtoCompany ? <Fragment>
+                                  <p>How long have you been working in this company ?</p>
+                                      <tr>
+                                        <label className="containerRadio">Less than 6 months
+                                          <input type="radio" name="workingExperience" checked={workingExperience==='0-3'} value ="0-3" 
+                                          onChange={handleOptionChangeworkingExperience}/>
+                                          <span className="checkmarkRadio" ></span>
+                                        </label>
+                                        <label className="containerRadio">6 months to 1 year
+                                            <input type="radio" name="workingExperience" checked={workingExperience==='3-5'} value ="3-5" 
+                                            onChange={handleOptionChangeworkingExperience}/>
+                                            <span className="checkmarkRadio" ></span>
+                                        </label>
+                                        <label className="containerRadio" > {'>'}1 year
+                                            <input type="radio" name="workingExperience" checked={workingExperience==='5-8'} value ="5-8" 
+                                            onChange={handleOptionChangeworkingExperience}/>
+                                            <span className="checkmarkRadio" ></span>
+                                        </label>
+                                        <br/>
+                                      </tr>
+                                  </Fragment> : null}
+                  </tr>
+                <th>Have you ever work in this team or with some of the team members ?</th>
+                  <tr>
+                  <label className="containerRadio"> Yes
+                          <input type="radio" checked={true}/>
+                          <span className="checkmarkRadio" ></span>
                       </label>
-                    </p>
-                    <p style={{fontSize:14}}><b>Have you ever rotated working on roles of other team members?</b></p>
-                      
-                      <p>
-                      <label>
-                        <input name="goal4" type="radio" checked value="0<score<=3" />
-                        <span>Yes</span>
+                      <label className="containerRadio"> No
+                          <input type="radio" checked />
+                          <span className="checkmarkRadio" ></span>
+                      </label><br/>
+                  </tr>
+                <th>Have you ever completed your main  responsibilities as a plan ?</th>
+                  <tr>
+                  <label className="containerRadio"> Yes
+                          <input type="radio" checked={true}/>
+                          <span className="checkmarkRadio" ></span>
                       </label>
-                      </p>
-                    <p>
-                      <label>
-                        <input name="goal4" type="radio" />
-                        <span>No</span>
+                      <label className="containerRadio"> No
+                          <input type="radio" checked />
+                          <span className="checkmarkRadio" ></span>
+                      </label><br/>
+                  </tr>
+                
+                <th>Have you ever rotated working on roles of other team members?</th>
+                  <tr>
+                  <label className="containerRadio"> Yes
+                          <input type="radio" checked={true}/>
+                          <span className="checkmarkRadio" ></span>
                       </label>
-                    </p>
-                    <p style={{fontSize:14}}><b>Have you ever complete main duties on time ?</b></p>
-                      
-                      <p>
-                      <label>
-                        <input name="goal5" type="radio" checked value="0<score<=3" />
-                        <span>Yes</span>
+                      <label className="containerRadio"> No
+                          <input type="radio" checked />
+                          <span className="checkmarkRadio" ></span>
+                      </label><br/>
+                  </tr>
+                <th>Have you ever complete main duties on time ?</th>
+                  <tr>
+                  <label className="containerRadio"> Yes
+                          <input type="radio" checked={true}/>
+                          <span className="checkmarkRadio" ></span>
                       </label>
-                      </p>
-                    <p>
-                      <label>
-                        <input name="goal5" type="radio" />
-                        <span>No</span>
+                      <label className="containerRadio"> No
+                          <input type="radio" checked />
+                          <span className="checkmarkRadio" ></span>
+                      </label><br/>
+                  </tr>
+                <th>Have you ever code and test a function of the product with team members ?</th>
+                  <tr>
+                  <label className="containerRadio"> Yes
+                          <input type="radio" checked={true}/>
+                          <span className="checkmarkRadio" ></span>
                       </label>
-                    </p>
-                    <p style={{fontSize:14}}><b>Have you ever code and test a function of the product with team members ?</b></p>
-                      
-                      <p>
-                      <label>
-                        <input name="goal6" type="radio" checked value="0<score<=3" />
-                        <span>Yes</span>
+                      <label className="containerRadio"> No
+                          <input type="radio" checked />
+                          <span className="checkmarkRadio" ></span>
+                      </label><br/>
+                  </tr>
+                <th>Have you ever complete main assigned tasks based on the criterias of team's work quality?</th>
+                  <tr>
+                  <label className="containerRadio"> Yes
+                          <input type="radio" checked={true}/>
+                          <span className="checkmarkRadio" ></span>
                       </label>
-                      </p>
-                    <p>
-                      <label>
-                        <input name="goal6" type="radio" />
-                        <span>No</span>
+                      <label className="containerRadio"> No
+                          <input type="radio" checked />
+                          <span className="checkmarkRadio" ></span>
+                      </label><br/>
+                  </tr>
+                <th>Have you ever work in a project which Agile method was used ?</th>
+                  <tr>
+                  <label className="containerRadio"> Yes
+                          <input type="radio" checked={true}/>
+                          <span className="checkmarkRadio" ></span>
                       </label>
-                    </p>
-                    <p style={{fontSize:14}}><b>Have you ever complete main assigned tasks based on the criterias of team's work quality?</b></p>
-                      
-                      <p>
-                      <label>
-                        <input name="goal7" type="radio" checked value="0<score<=3"/>
-                        <span>Yes</span>
+                      <label className="containerRadio"> No
+                          <input type="radio" checked />
+                          <span className="checkmarkRadio" ></span>
+                      </label><br/>
+                  </tr>
+                <th>Is there any member in your team use Agile artefacts ?</th>
+                  <tr>
+                  <label className="containerRadio"> Yes
+                          <input type="radio" checked={true}/>
+                          <span className="checkmarkRadio" ></span>
                       </label>
-                      </p>
-                    <p>
-                      <label>
-                        <input name="goal7" type="radio" />
-                        <span>No</span>
+                      <label className="containerRadio"> No
+                          <input type="radio" checked />
+                          <span className="checkmarkRadio" ></span>
+                      </label><br/>
+                  </tr>
+                <th>Is there any member in your team use Agile artefacts ?</th>
+                  <tr>
+                  <label className="containerRadio"> Yes
+                          <input type="radio" checked={true}/>
+                          <span className="checkmarkRadio" ></span>
                       </label>
-                    </p>
-                    <p style={{fontSize:14}}><b>Have you ever code and test a function of the product with team members ?</b></p>
-                      
-                      <p>
-                      <label>
-                        <input name="goal8" type="radio" checked value="0<score<=3" />
-                        <span>Yes</span>
-                      </label>
-                      </p>
-                    <p>
-                      <label>
-                        <input name="goal8" type="radio" />
-                        <span>No</span>
-                      </label>
-                    </p>
-                    <p style={{fontSize:14}}><b>Have you ever work in a project which Agile method was used ?</b></p>
-                      
-                      <p>
-                      <label>
-                        <input name="goal9" type="radio" checked value="0<score<=3" />
-                        <span>Yes</span>
-                      </label>
-                      </p>
-                    <p>
-                      <label>
-                        <input name="goal9" type="radio" />
-                        <span>No</span>
-                      </label>
-                    </p>
-                    <p style={{fontSize:14}}><b>Is there any member in your team use Agile artefacts ?</b></p>
-                      
-                      <p>
-                      <label>
-                        <input name="goal10" type="radio" checked value="0<score<=3" />
-                        <span>Yes</span>
-                      </label>
-                      </p>
-                    <p>
-                      <label>
-                        <input name="goal10" type="radio" />
-                        <span>No</span>
-                      </label>
-                    </p>
-                    <p style={{fontSize:14}}><b>Is there any member in your team use Agile artefacts ?</b></p>
-                      <p>
-                      <label>
-                        <input name="goal11" type="radio" checked value="0<score<=3" />
-                        <span>Yes</span>
-                      </label>
-                      </p>
-                    <p>
-                      <label>
-                        <input name="goal11" type="radio" />
-                        <span>No</span>
-                      </label>
-                    </p>
+                      <label className="containerRadio"> No
+                          <input type="radio" checked />
+                          <span className="checkmarkRadio" ></span>
+                      </label><br/>
+                  </tr>
+                
+            </table>
           <div>             
         </div>
       </form>
-
                                 <div className="card-footer text-center">
                                     <button type="submit" className="btn btn-primary text-center" onClick="">Continue</button>
                                 </div>
+          <br/>                   
       </div>
       </body>
-    </Grid>
     )
   }
 export default Onboarding;

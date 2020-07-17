@@ -26,7 +26,7 @@ const ProgramingLanguages = (props) => {
         <tr key={val.index} style={{margin: 1, width:720, height: 20, border:0}}>
           <td style={{margin: 1, border:0}}>
             <select  name="programingName" id={programingName} data-id={idx} style={{margin: 1, width:500}} 
-            className="form-control">
+            className='dropDownListSelect'>
               {prolanguage.map(p=>(<option value={p.name}>{p.label}</option>))}
             </select>
             </td>

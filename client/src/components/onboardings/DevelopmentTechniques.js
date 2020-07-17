@@ -19,7 +19,7 @@ const DevelopmentTech = (props) => {
       return(
         <tr key={val.index}>
           <td className="">
-            <select  name="developmenttechName" id={developmenttechName} data-id={idx} className="collection-container">
+            <select  name="developmenttechName" id={developmenttechName} data-id={idx} className='dropDownListSelect' style={{margin: 1, width:500}}>
             {devtech.map(devt=>(<option value={devt.name}>{devt.label}</option>))}
             </select>
           </td>

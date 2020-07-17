@@ -21,7 +21,6 @@ export const onboarding = ({
               'Content-Type': 'application/json'
           }
         }
-
         const body =JSON.stringify({companyName,
           companyDescription,
           collectionList,

@@ -19,7 +19,7 @@ const Frameworks = (props) => {
       return(
         <tr key={val.index} style={{margin: 1, width:720, height: 20, border:1}}>
           <td className="">
-            <select name="frameworkName" id={frameworkName} data-id={idx} style={{margin: 1, width:500}} className="form-control">
+            <select name="frameworkName" id={frameworkName} data-id={idx} style={{margin: 1, width:500}} className='dropDownListSelect'>
               {framework.map(f=>(<option value={f.name}>{f.label}</option>))}
             </select>
           </td>

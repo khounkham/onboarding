@@ -19,7 +19,7 @@ const Databases = (props) => {
       return(
         <tr key={val.index} style={{margin: 1, width:720, height: 20, border:1}}>
           <td className="">
-            <select  name="databaseName" id={databaseName} data-id={idx} className="collection-container">
+            <select name="databaseName" id={databaseName} data-id={idx} className='dropDownListSelect' style={{margin: 1, width:500}}>
               {database.map(d=>(<option value={d.name}>{d.label}</option>))}
             </select>
           </td>
