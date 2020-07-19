@@ -6,6 +6,7 @@ import Frameworks from './Frameworks';
 import Databases from './Databases';
 import DevelopmentTechs from './DevelopmentTechniques';
 import GenerateQuestionMgtTool from './GenerateQuestionMgtTool';
+import GenerateQuestionMethod from './GenerateQuestionMethod';
 //Redux 
     //import {setAlert} from '../../actions/alert';
     //import PropTypes from 'prop-types';
@@ -35,8 +36,8 @@ const Onboarding = () => {
 const [formData, setFormData]= useState ({
   companyName: '',
   companyDescription: '',
-  collectionList:[{ index: Math.random(), collectionName: ""}],
-  methodologyList: [{ index: Math.random(), methodologyName: ""}],
+  collectionList:[{ index: Math.random(), collectionName: "Asana"}],
+  methodologyList: [{ index: Math.random(), methodologyName: "Agile"}],
   programingList: [{ index: Math.random(), programingName: ""}],
   projectName:'',
   projectDescription:'',
@@ -64,9 +65,8 @@ const [formData, setFormData]= useState ({
   ScoreOfquestionGoal11:''
   });
   const [ScoreOfquestionGoal1, setScoreOfquestionGoal1] = useState('');
-  const [workingExperience, setWorkingExperience] = useState('0-3');
-
-  const [isNotNewtoCompany, setIsNotNewtoCompany] = useState(false);
+  const [workingExperience, setWorkingExperience] = useState('');
+  const [isNewToCompany, setIsNewToCompany] = useState(false);
 
   const {
     companyName,
@@ -128,6 +128,13 @@ const onChangescoreOfMgtTool = (i,v) => {
     scoreOfMgtTool: newList,
   });
 }
+const onChangescoreOfMethod = (i,v) => {
+  const newList = [...scoreOfMethod];
+  newList[i] = v;
+  setFormData({...formData,
+    scoreOfMethod: newList,
+  });
+}
 
 // const generateQuestion  
 const onChangeCollectionList = (i, v) => {
@@ -137,76 +144,49 @@ const onChangeCollectionList = (i, v) => {
     collectionList: newList
   });
 }
+// const generateQuestionMethod  
+const onChangemethodologyList = (i, v) => {
+  const newList = [...methodologyList];
+  newList[i].methodologyName = v;
+  setFormData({...formData,
+    methodologyList: newList
+  });
+}
 
-// const onChangescoreOfMgtTool = (i, v) => {
-//   const newList = [...scoreOfMgtTool];
-//   newList[i].mgtToolName = v;
-//   setFormData({...formData,
-//     scoreOfMgtTool: newList,
-    
-  // });
-  //console.log(scoreOfMgtTool);
-//}
+
 const addNewRow = (e) => {
           setFormData({...formData,
             collectionList: [...collectionList, { index: Math.random(), collectionName: "asana"}],
           });
       }
 const addNewRow1 = (e) => {
-          setFormData((prevState) => ({
-            methodologyList: [...prevState.methodologyList, { index: Math.random(), methodologyName: ""}],
-          }));
+          setFormData({...formData,
+            methodologyList: [...methodologyList, { index: Math.random(), methodologyName: "Agile"}],
+          });
         }
+
 const addNewRow2 = (e) => {
-  setFormData((prevState) => ({
-            programingList: [...prevState.programingList, { index: Math.random(), programingName: ""}],
-          }));
-        }
+          setFormData({...formData,
+            programingList: [...programingList, { index: Math.random(), programingName: "JavaScript"}],
+          });
+}
+
 const addNewRow3 = (e) => {
-  setFormData((prevState) => ({
-            frameworkList: [...prevState.frameworkList, { index: Math.random(), frameworkName: ""}],
-          }));
-        }
+      setFormData({...formData,
+        frameworkList: [...frameworkList, { index: Math.random(), frameworkName: "React.js"}],
+      });
+    }
 const addNewRow4 = (e) => {
-      setFormData((prevState) => ({
-            databaseList: [...prevState.databaseList, { index: Math.random(), databaseName: ""}],
-          }));
-        }
+      setFormData({...formData,
+        databaseList: [...databaseList, { index: Math.random(), databaseName: "MongoDB"}],
+      });
+    }
+
 const addNewRow5 = (e) => {
-  setFormData((prevState) => ({
-            developmenttechList: [...prevState.developmenttechList, { index: Math.random(), developmenttechName: ""}],
-          }));
-        }
-const deteteRow = (index) => {
-  setFormData({
-                collectionList: this.state.collectionList.filter((s, sindex) => index !== sindex),
-            });}
-  
-const deteteRow1 = (index) => {
-  setFormData({
-                methodologyList: this.state.methodologyList.filter((s, sindex) => index !== sindex),
-              });
-          }
-const deteteRow2 = (index) => {
-  setFormData({
-            programingList: this.state.programingList.filter((s, sindex) => index !== sindex),
-          });
-      }
-const deteteRow3 = (index) => {
-  setFormData({
-            frameworkList: this.state.frameworkList.filter((s, sindex) => index !== sindex),
-          });
-        }
-const deteteRow4 = (index) => {
-          setFormData({
-            databaseList: this.state.databaseList.filter((s, sindex) => index !== sindex),
-          });
-        }
-const deteteRow5 = (index) => {
-          setFormData({
-            developmenttechList: this.state.developmentList.filter((s, sindex) => index !== sindex)
-          });
-        }
+      setFormData({...formData,
+        developmenttechList: [...developmenttechList, { index: Math.random(), developmenttechName: "TDD"}],
+      });
+    }
 
 const clickOnDelete = (record) => {
         setFormData({...formData,
@@ -216,41 +196,62 @@ const clickOnDelete = (record) => {
 
       }
 const clickOnDelete1 = (record) => {
-          setFormData({methodologyList: this.state.methodologyList.filter(r => r !== record)
+          setFormData({...formData,
+            methodologyList: methodologyList.filter(r => r !== record),
+            scoreOfMethod: scoreOfMethod.filter(r => r !== record)
           });
-          }
-
+      }
 const clickOnDelete2 = (record) => {
-            setFormData({programingList: this.state.programingList.filter(r => r !== record)
-            });
-            }
+  setFormData({...formData,
+    programingList: programingList.filter(r => r !== record),
+    scoreOfProLanguage: scoreOfProLanguage.filter(r => r !== record)
+  });
+}
+
 const clickOnDelete3 = (record) => {
-            setFormData({frameworkList: this.state.frameworkList.filter(r => r !== record)
-            });
-            }
-const clickOnDelete4 = (record) => {
-        setFormData({databaseList: this.state.databaseList.filter(r => r !== record)
+        setFormData({...formData,
+          frameworkList: frameworkList.filter(r => r !== record),
+          scoreOfFramework: scoreOfFramework.filter(r => r !== record)
         });
-        }
+      }
+const clickOnDelete4 = (record) => {
+        setFormData({...formData,
+          databaseList: databaseList.filter(r => r !== record),
+          scoreOfDb: scoreOfDb.filter(r => r !== record)
+        });
+      }
 
 const clickOnDelete5 = (record) => {
-         setFormData({developmenttechList: this.state.developmenttechList.filter(r => r !== record)
+        setFormData({...formData,
+          developmenttechList: developmenttechList.filter(r => r !== record),
+          scoreOfDevpTech: scoreOfDevpTech.filter(r => r !== record)
         });
-        }
+      }
 // //Onchange handlers
-// const onChangeRadioButtonHandler = (e) =>{
-//     setScoreOfquestionGoal1({workingExperience: e.target.value})
-// }
-
-const handleOptionChange= (e) => {
-  setScoreOfquestionGoal1({...ScoreOfquestionGoal1, [e.target.name]: e.target.value});
-  //setIsNotNewtoCompany(true);
+const handleOptionChangeYES= (e) => {
+  console.log(handleOptionChangeYES);
+  setScoreOfquestionGoal1({...ScoreOfquestionGoal1, isNewToCompany:!isNewToCompany});
+  
+};
+const handleOptionChangeNO= (e) => {
+  console.log(handleOptionChangeNO);
+  if (isNewToCompany) {
+    setScoreOfquestionGoal1({...ScoreOfquestionGoal1, isNewToCompany:isNewToCompany});
+  } else {
+    setScoreOfquestionGoal1({...ScoreOfquestionGoal1, isNewToCompany:!isNewToCompany});
   }
+  
+  //setIsNewToCompany(!isNewToCompany);
+};
+  //setisNewToCompany(true);
+
 
 const handleOptionChangeworkingExperience= (e) => {
+  console.log(handleOptionChangeworkingExperience);
   setWorkingExperience({...workingExperience,[e.target.name]: e.target.value});
-  //console.log(handleOptionChangeworkingExperience);
+  console.log(setWorkingExperience);
 }
+
   return (
       <body>
         {/* <h2>Home/Navigation Here/xxx</h2> */}
@@ -281,7 +282,8 @@ const handleOptionChangeworkingExperience= (e) => {
                 <th> Development Methodologies*</th>   
                   <tr>
                   <CompanyMethodology add={addNewRow1} delete={clickOnDelete1} 
-                        methodologyList={methodologyList}/>
+                        methodologyList={methodologyList}
+                        onChangemethodologyList={onChangemethodologyList} />
                   </tr>
             </table>
             </div>
@@ -290,65 +292,69 @@ const handleOptionChangeworkingExperience= (e) => {
               <th> Team/Project Name*</th>  
                 <tr style={{height: 15, width: 50, background:withTheme}}>
                   <input type="text" style={{width:708}} name="projectName" id="projectName" 
-                  placeholder="Enter project name" />
+                  placeholder="Enter project name" value={projectName} />
                 </tr>
               <th> Description</th>  
                 <tr style={{height: 15, width: 50, background:withTheme}}>
-                  <textarea type="textarea" name="projectDescription" placeholder="Enter team/project description" id="projectDescription" 
+                  <textarea type="textarea" name="projectDescription" value={projectDescription} placeholder="Enter team/project description" id="projectDescription" 
                   className="" onChange={e=>(e)} 
                   style={{width:708, height: 60}}>
                   </textarea>
                 </tr>
               <th>Programing Languages*</th>  
                 <tr style={{height: 15, width: 50, background:withTheme}}>
-                  <PrograminLanguage add={addNewRow2} delete={clickOnDelete2.bind(this)} programingList={programingList} />
+                  <PrograminLanguage add={addNewRow2} delete={clickOnDelete2} programingList={programingList} />
                 </tr>
               <th>Frameworks*</th>  
                 <tr style={{height: 15, width: 50, background:withTheme}}>
-                  <Frameworks add={addNewRow3} delete={clickOnDelete3.bind(this)} frameworkList={frameworkList} />
+                  <Frameworks add={addNewRow3} delete={clickOnDelete3} frameworkList={frameworkList} />
                 </tr>
               <th>Databases*</th>  
                 <tr style={{height: 15, width: 50, background:withTheme}}>
-                  <Databases add={addNewRow4} delete={clickOnDelete4.bind(this)} databaseList={databaseList} />
+                  <Databases add={addNewRow4} delete={clickOnDelete4} databaseList={databaseList} />
                 </tr>
               <th>Development Techniques*</th>  
                 <tr style={{height: 15, width: 50, background:withTheme}}>
-                  <DevelopmentTechs add={addNewRow5} delete={clickOnDelete5.bind(this)} developmenttechList={developmenttechList} />
+                  <DevelopmentTechs add={addNewRow5} delete={clickOnDelete5} developmenttechList={developmenttechList} />
                 </tr>
             </table>
             <p className="lead"><i className="fas fa-user"></i> Onboarder's characteristics</p>
             <table className="table" style={{width:710, height:20}}>
                 <th>Onboarder's Name*</th>
                   <tr>
-                    <input type="text" style={{width:708}} name="onboardername" id="onboardername" 
+                    <input type="text" style={{width:708}} name="onboardername" value={onboarderName} id="onboardername" 
                     placeholder="Enter onboarder name" onChange={e=>e} />
                   </tr>
                 <th>Email*</th>
                   <tr>
-                    <input type="text" style={{width:708}} name="onboarderEmail" id="onboarderEmail" className="" 
+                    <input type="text" style={{width:708}} name="onboarderEmail" value={onboarderEmail} id="onboarderEmail" className="" 
                     placeholder="Enter onboarder email" onChange={e=>e} />
                   </tr>
             </table>
 
-            <div>
-              <GenerateQuestionMgtTool collectionList={collectionList} onChangescoreOfMgtTool={onChangescoreOfMgtTool} scoreOfMgtTool={scoreOfMgtTool} />
-            </div>
+                  <div>
+                    <GenerateQuestionMgtTool collectionList={collectionList} onChangescoreOfMgtTool={onChangescoreOfMgtTool} scoreOfMgtTool={scoreOfMgtTool} />
+                  </div>
+                  <div>
+                    <GenerateQuestionMethod methodologyList={methodologyList} onChangescoreOfMethod={onChangescoreOfMethod} scoreOfMethod={scoreOfMethod}/>
+                  </div>
+
             <table className="table" style={{width:710, height:20}}>
                 <th>Are you new to this company ?</th>
                   <tr>
                     <label className="containerRadio">Yes
                           <input name="newToCompany"type="radio" checked={ScoreOfquestionGoal1} 
-                          onChange={handleOptionChange} 
+                          onChange={handleOptionChangeYES}
                           value={ScoreOfquestionGoal1}/>
                           <span className="checkmarkRadio"></span>
                       </label>
                       <label className="containerRadio"> No
                           <input type="radio" name="newToCompany" checked={ScoreOfquestionGoal1} 
-                          onChange={{handleOptionChange}} 
+                          onChange={handleOptionChangeNO} 
                           value={ScoreOfquestionGoal1} />
                           <span className="checkmarkRadio" ></span>
                       </label><br/>
-                                {isNotNewtoCompany ? <Fragment>
+                                {!isNewToCompany && <Fragment>
                                   <p>How long have you been working in this company ?</p>
                                       <tr>
                                         <label className="containerRadio">Less than 6 months
@@ -368,27 +374,27 @@ const handleOptionChangeworkingExperience= (e) => {
                                         </label>
                                         <br/>
                                       </tr>
-                                  </Fragment> : null}
+                                  </Fragment>}
                   </tr>
                 <th>Have you ever work in this team or with some of the team members ?</th>
                   <tr>
                   <label className="containerRadio"> Yes
-                          <input type="radio" checked={true}/>
+                          <input type="radio" name="ScoreOfquestionGoal2" checked={true}/>
                           <span className="checkmarkRadio" ></span>
                       </label>
                       <label className="containerRadio"> No
-                          <input type="radio" checked />
+                          <input type="radio" name="ScoreOfquestionGoal2" checked />
                           <span className="checkmarkRadio" ></span>
                       </label><br/>
                   </tr>
                 <th>Have you ever completed your main  responsibilities as a plan ?</th>
                   <tr>
                   <label className="containerRadio"> Yes
-                          <input type="radio" checked={true}/>
+                          <input name="ScoreOfquestionGoal3" type="radio" checked={true}/>
                           <span className="checkmarkRadio" ></span>
                       </label>
                       <label className="containerRadio"> No
-                          <input type="radio" checked />
+                          <input name="ScoreOfquestionGoal3" type="radio" checked />
                           <span className="checkmarkRadio" ></span>
                       </label><br/>
                   </tr>
@@ -396,81 +402,92 @@ const handleOptionChangeworkingExperience= (e) => {
                 <th>Have you ever rotated working on roles of other team members?</th>
                   <tr>
                   <label className="containerRadio"> Yes
-                          <input type="radio" checked={true}/>
+                          <input name="ScoreOfquestionGoal4" type="radio" checked={true}/>
                           <span className="checkmarkRadio" ></span>
                       </label>
                       <label className="containerRadio"> No
-                          <input type="radio" checked />
+                          <input name="ScoreOfquestionGoal4" type="radio" checked />
                           <span className="checkmarkRadio" ></span>
                       </label><br/>
                   </tr>
                 <th>Have you ever complete main duties on time ?</th>
                   <tr>
                   <label className="containerRadio"> Yes
-                          <input type="radio" checked={true}/>
+                          <input name="ScoreOfquestionGoal5" type="radio" checked={true}/>
                           <span className="checkmarkRadio" ></span>
                       </label>
                       <label className="containerRadio"> No
-                          <input type="radio" checked />
+                          <input name="ScoreOfquestionGoal5" type="radio" checked />
                           <span className="checkmarkRadio" ></span>
                       </label><br/>
                   </tr>
                 <th>Have you ever code and test a function of the product with team members ?</th>
                   <tr>
                   <label className="containerRadio"> Yes
-                          <input type="radio" checked={true}/>
+                          <input name="ScoreOfquestionGoal6" type="radio" checked={true}/>
                           <span className="checkmarkRadio" ></span>
                       </label>
                       <label className="containerRadio"> No
-                          <input type="radio" checked />
+                          <input name="ScoreOfquestionGoal6" type="radio" checked />
                           <span className="checkmarkRadio" ></span>
                       </label><br/>
                   </tr>
                 <th>Have you ever complete main assigned tasks based on the criterias of team's work quality?</th>
                   <tr>
                   <label className="containerRadio"> Yes
-                          <input type="radio" checked={true}/>
+                          <input name="ScoreOfquestionGoal7" type="radio" checked={true}/>
                           <span className="checkmarkRadio" ></span>
                       </label>
                       <label className="containerRadio"> No
-                          <input type="radio" checked />
+                          <input name="ScoreOfquestionGoal7" type="radio" checked />
                           <span className="checkmarkRadio" ></span>
                       </label><br/>
                   </tr>
                 <th>Have you ever work in a project which Agile method was used ?</th>
                   <tr>
                   <label className="containerRadio"> Yes
-                          <input type="radio" checked={true}/>
+                          <input name="ScoreOfquestionGoal8" type="radio" checked={true}/>
                           <span className="checkmarkRadio" ></span>
                       </label>
                       <label className="containerRadio"> No
-                          <input type="radio" checked />
+                          <input name="ScoreOfquestionGoal8" type="radio" checked />
                           <span className="checkmarkRadio" ></span>
                       </label><br/>
                   </tr>
                 <th>Is there any member in your team use Agile artefacts ?</th>
                   <tr>
                   <label className="containerRadio"> Yes
-                          <input type="radio" checked={true}/>
+                          <input name="ScoreOfquestionGoal9" type="radio" checked={true}/>
                           <span className="checkmarkRadio" ></span>
                       </label>
                       <label className="containerRadio"> No
-                          <input type="radio" checked />
+                          <input name="ScoreOfquestionGoal9" type="radio" checked />
                           <span className="checkmarkRadio" ></span>
                       </label><br/>
                   </tr>
                 <th>Is there any member in your team use Agile artefacts ?</th>
                   <tr>
                   <label className="containerRadio"> Yes
-                          <input type="radio" checked={true}/>
+                          <input name="ScoreOfquestionGoal10" type="radio" checked={true}/>
                           <span className="checkmarkRadio" ></span>
                       </label>
                       <label className="containerRadio"> No
-                          <input type="radio" checked />
+                          <input name="ScoreOfquestionGoal10" type="radio" checked />
                           <span className="checkmarkRadio" ></span>
                       </label><br/>
                   </tr>
-                
+                  <th>Were there more than one module in the products developed by your organizaiton? </th>
+                  <tr>
+                  <label className="containerRadio"> Yes
+                          <input name="ScoreOfquestionGoal11" type="radio" checked={true}/>
+                          <span className="checkmarkRadio" ></span>
+                      </label>
+                      <label className="containerRadio"> No
+                          <input name="ScoreOfquestionGoal11" type="radio" checked />
+                          <span className="checkmarkRadio" ></span>
+                      </label><br/>
+                  </tr>
+                  
             </table>
           <div>             
         </div>

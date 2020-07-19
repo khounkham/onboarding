@@ -1,40 +1,48 @@
 import React from "react";
 const CompanyMethodology = (props) => {
 
-  const tools = [
+  const methods = [
     {
-      name: 'asana',
-      label: 'Asana'
+      name: 'Agile',
+      label: 'Agile'
     },
     {
-      name: 'a=jira',
-      label: 'Ajira'
+      name: 'Scrum',
+      label: 'Scrum'
     },
     {
-      name: 'foo',
-      label: 'Foo'
+      name: 'Xp',
+      label: 'Xp'
     },
     {
-      name: 'test',
-      label: 'test'
+      name: 'Water fall',
+      label: 'Water fall'
     }];
+
+   const onChangeSelect = (i, e) => {
+    //props.generateQuestion(e.target.value)
+    console.log('selected', e.target.value);
+    props.onChangemethodologyList(i, e.target.value);
+  };
+
+  console.log('props of methodologyList', props)
+
 
   return (
     props.methodologyList.map((val, idx) => {
       let methodologyName =`methodologyName-${idx}`
       return(
         <tr key={val.index} style={{margin: 1, width:720, height: 20, border:0}}>
-          <td className="">
-            <select  name="methodologyName" id={methodologyName} data-id={idx} className='dropDownListSelect' style={{width:500}}>
-            {tools.map(t => (<option value={t.name}>{t.label}</option>))}
-            </select>
-          </td>
-          <td>
-          { 
-                  idx===0?<button onClick={()=>props.add()} className="btn add-btn" type="button" style={{position: "relative"}}>+</button>
-                  : <button className="btn add-btn" style={{position: "relative"}} type="button" onClick={(()=>props.delete(val))}>-</button>
-                  }
-          </td>
+          <th className="">
+            <select  name="methodologyName" id={methodologyName} data-id={idx} className='dropDownListSelect' style={{width:500}} 
+            onChange={e => onChangeSelect(idx, e)} value={val.methodologyName}>
+            {methods.map(t => (<option value={t.name}>{t.label}</option>))}
+            </select> {'  '}
+            { 
+            idx===0?<button onClick={()=>props.add()} className="btn add-btn" type="button" style={{position: "relative"}}>+</button>
+            : <button className="btn btn-danger" style={{position: "relative"}} type="button" onClick={(()=>props.delete(val))}>-</button>
+            }
+          </th>
         </tr>
       )}
     ))}

@@ -17,18 +17,17 @@ const DevelopmentTech = (props) => {
     props.developmenttechList.map((val, idx) => {
       let developmenttechName =`methodologyName-${idx}`
       return(
-        <tr key={val.index}>
-          <td className="">
+        <table key={val.index}>
+          <th className="">
             <select  name="developmenttechName" id={developmenttechName} data-id={idx} className='dropDownListSelect' style={{margin: 1, width:500}}>
             {devtech.map(devt=>(<option value={devt.name}>{devt.label}</option>))}
-            </select>
-          </td>
-          <td>{ 
+            </select>{'  '}
+            { 
                   idx===0?<button onClick={()=>props.add()} className="btn add-btn" type="button" style={{position: "relative"}}>+</button>
                   : <button className="btn btn-danger" style={{position: "relative"}} type="button" onClick={(()=>props.delete(val))}>-</button>
                   }
-              </td>
-        </tr>
+          </th>
+        </table>
       )}
     ))}
 export default DevelopmentTech
