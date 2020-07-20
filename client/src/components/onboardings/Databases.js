@@ -9,17 +9,28 @@ const Databases = (props) => {
     label: 'MySql'
   },
   {
+    name: 'postgresSql',
+    label: 'postgresSql'
+  },
+  {
     name: 'Oracle',
     label: 'Oracle'
   }];
 
+  const onChangeSelect = (i, e) => {
+    //props.generateQuestion(e.target.value)
+    console.log('selected', e.target.value);
+    props.onChangedatabaseList(i, e.target.value);
+  };
+
   return (
     props.databaseList.map((val, idx) => {
-      let databaseName =`methodologyName-${idx}`
+      let databaseName =`databaseName-${idx}`
       return(
         <table key={val.index} style={{margin: 1, width:720, height: 20, border:1}}>
           <th className="">
-            <select name="databaseName" id={databaseName} data-id={idx} className='dropDownListSelect' style={{margin: 1, width:500}}>
+            <select name="databaseName" id={databaseName} data-id={idx} className='dropDownListSelect' 
+            style={{margin: 1, width:500}} onChange={e => onChangeSelect(idx, e)} value={val.databaseName}>
               {database.map(d=>(<option value={d.name}>{d.label}</option>))}
             </select>{' '}
             { 

@@ -6,20 +6,28 @@ const DevelopmentTech = (props) => {
       label: 'TDD'
     },
     {
-      name: 'RubyonRails',
-      label: 'Ruby on rails'
+      name: 'ABC',
+      label: 'ABC'
     },
     {
-      name: 'React',
-      label: 'React'
+      name: 'MOP programing',
+      label: 'MOP programing'
     }];
+
+    const onChangeSelect = (i, e) => {
+      //props.generateQuestion(e.target.value)
+      console.log('selected', e.target.value);
+      props.onChangedevelopmenttechList(i, e.target.value);
+    };
+
   return (
     props.developmenttechList.map((val, idx) => {
       let developmenttechName =`methodologyName-${idx}`
       return(
         <table key={val.index}>
           <th className="">
-            <select  name="developmenttechName" id={developmenttechName} data-id={idx} className='dropDownListSelect' style={{margin: 1, width:500}}>
+            <select  name="developmenttechName" id={developmenttechName} data-id={idx} className='dropDownListSelect' 
+            style={{margin: 1, width:500}} onChange={e => onChangeSelect(idx, e)} value={val.developmenttechName}>
             {devtech.map(devt=>(<option value={devt.name}>{devt.label}</option>))}
             </select>{'  '}
             { 
@@ -30,4 +38,5 @@ const DevelopmentTech = (props) => {
         </table>
       )}
     ))}
+    
 export default DevelopmentTech

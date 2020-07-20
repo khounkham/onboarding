@@ -7,6 +7,11 @@ import Databases from './Databases';
 import DevelopmentTechs from './DevelopmentTechniques';
 import GenerateQuestionMgtTool from './GenerateQuestionMgtTool';
 import GenerateQuestionMethod from './GenerateQuestionMethod';
+import GenerateQuestionProLanguage from './GenerateQuestionProLanguage';
+import GenerateQuestionFramework from './GenerateQuestionFramework';
+import GenerateQuestionDatabase from './GenerateQuestionDatabase';
+import GenerateQuestionDevptech from './GenerateQuestionDevpTech';
+
 //Redux 
     //import {setAlert} from '../../actions/alert';
     //import PropTypes from 'prop-types';
@@ -38,12 +43,12 @@ const [formData, setFormData]= useState ({
   companyDescription: '',
   collectionList:[{ index: Math.random(), collectionName: "Asana"}],
   methodologyList: [{ index: Math.random(), methodologyName: "Agile"}],
-  programingList: [{ index: Math.random(), programingName: ""}],
   projectName:'',
   projectDescription:'',
-  frameworkList: [{ index: Math.random(), frameworkName: ""}],
+  programingList: [{ index: Math.random(), programingName: "JavaScript"}],
+  frameworkList: [{ index: Math.random(), frameworkName: "React.js"}],
   databaseList: [{ index: Math.random(), databaseName: ""}],
-  developmenttechList: [{ index: Math.random(), developmenttechName: ""}],
+  developmenttechList: [{ index: Math.random(), developmenttechName: "TDD"}],
   onboarderName: '',
   onboarderEmail: '',
   scoreOfMgtTool:[{index: Math.random(), mgtTool: ""}],
@@ -53,18 +58,29 @@ const [formData, setFormData]= useState ({
   scoreOfDb:[{index: Math.random(), devDB: ""}],
   scoreOfDevpTech:[{index: Math.random(), devTech: ""}],
   //ScoreOfquestionGoal1:'',
-  ScoreOfquestionGoal2:'',
-  ScoreOfquestionGoal3:'',
-  ScoreOfquestionGoal4:'',
-  ScoreOfquestionGoal5:'',
-  ScoreOfquestionGoal6:'',
-  ScoreOfquestionGoal7:'',
-  ScoreOfquestionGoal8:'',
-  ScoreOfquestionGoal9:'',
-  ScoreOfquestionGoal10:'',
-  ScoreOfquestionGoal11:''
+  // ScoreOfquestionGoal2:'',
+  // ScoreOfquestionGoal3:'',
+  // ScoreOfquestionGoal4:'',
+  // ScoreOfquestionGoal5:'',
+  // ScoreOfquestionGoal6:'',
+  // ScoreOfquestionGoal7:'',
+  // ScoreOfquestionGoal8:'',
+  // ScoreOfquestionGoal9:'',
+  // ScoreOfquestionGoal10:'',
+  // ScoreOfquestionGoal11:''
   });
   const [ScoreOfquestionGoal1, setScoreOfquestionGoal1] = useState('');
+  const [ScoreOfquestionGoal2, setScoreOfquestionGoal2] = useState('');
+  const [ScoreOfquestionGoal3, setScoreOfquestionGoal3] = useState('');
+  const [ScoreOfquestionGoal4, setScoreOfquestionGoal4] = useState('');
+  const [ScoreOfquestionGoal5, setScoreOfquestionGoal5] = useState('');
+  const [ScoreOfquestionGoal6, setScoreOfquestionGoal6] = useState('');
+  const [ScoreOfquestionGoal7, setScoreOfquestionGoal7] = useState('');
+  const [ScoreOfquestionGoal8, setScoreOfquestionGoal8] = useState('');
+  const [ScoreOfquestionGoal9, setScoreOfquestionGoal9] = useState('');
+  const [ScoreOfquestionGoal10, setScoreOfquestionGoal10] = useState('');
+  const [ScoreOfquestionGoal11, setScoreOfquestionGoal11] = useState('');
+
   const [workingExperience, setWorkingExperience] = useState('');
   const [isNewToCompany, setIsNewToCompany] = useState(false);
 
@@ -88,16 +104,16 @@ const [formData, setFormData]= useState ({
     scoreOfDb,
     scoreOfDevpTech,
     //ScoreOfquestionGoal1,
-    ScoreOfquestionGoal2,
-    ScoreOfquestionGoal3,
-    ScoreOfquestionGoal4,
-    ScoreOfquestionGoal5,
-    ScoreOfquestionGoal6,
-    ScoreOfquestionGoal7,
-    ScoreOfquestionGoal8,
-    ScoreOfquestionGoal9,
-    ScoreOfquestionGoal10,
-    ScoreOfquestionGoal11
+    // ScoreOfquestionGoal2,
+    // ScoreOfquestionGoal3,
+    // ScoreOfquestionGoal4,
+    // ScoreOfquestionGoal5,
+    // ScoreOfquestionGoal6,
+    // ScoreOfquestionGoal7,
+    // ScoreOfquestionGoal8,
+    // ScoreOfquestionGoal9,
+    // ScoreOfquestionGoal10,
+    // ScoreOfquestionGoal11
   } 
   = formData;
 
@@ -135,6 +151,36 @@ const onChangescoreOfMethod = (i,v) => {
     scoreOfMethod: newList,
   });
 }
+const onChangescoreOfProLanguage = (i,v) => {
+  const newList = [...scoreOfProLanguage];
+  newList[i] = v;
+  setFormData({...formData,
+    scoreOfProLanguage: newList,
+  });
+}
+const onChangescoreOfFramework = (i,v) => {
+  const newList = [...scoreOfFramework];
+  newList[i] = v;
+  setFormData({...formData,
+    scoreOfFramework: newList,
+  });
+}
+
+const onChangescoreOfDb = (i,v) => {
+  const newList = [...scoreOfDb];
+  newList[i] = v;
+  setFormData({...formData,
+    scoreOfDb: newList,
+  });
+}
+
+const onChangescoreOfDevpTech = (i,v) => {
+  const newList = [...scoreOfDevpTech];
+  newList[i] = v;
+  setFormData({...formData,
+    scoreOfDevpTech: newList,
+  });
+}
 
 // const generateQuestion  
 const onChangeCollectionList = (i, v) => {
@@ -152,7 +198,39 @@ const onChangemethodologyList = (i, v) => {
     methodologyList: newList
   });
 }
+// const generateQuestionProgrammingLanguage  
+const onChangeprogramingList = (i, v) => {
+  const newList = [...programingList];
+  newList[i].programingName = v;
+  setFormData({...formData,
+    programingList: newList
+  });
+}
+// const generateQuestionDev framework  
+const onChangeframeworkList = (i, v) => {
+  const newList = [...frameworkList];
+  newList[i].frameworkName = v;
+  setFormData({...formData,
+    frameworkList: newList
+  });
+}
+// const generateQuestionDev database  
+const onChangedatabaseList = (i, v) => {
+  const newList = [...databaseList];
+  newList[i].databaseName = v;
+  setFormData({...formData,
+    databaseList: newList
+  });
+}
 
+// const generateQuestionDev development tech dep  
+const onChangedevelopmenttechList = (i, v) => {
+  const newList = [...developmenttechList];
+  newList[i].developmenttechName = v;
+  setFormData({...formData,
+    developmenttechList: newList
+  });
+}
 
 const addNewRow = (e) => {
           setFormData({...formData,
@@ -303,19 +381,23 @@ const handleOptionChangeworkingExperience= (e) => {
                 </tr>
               <th>Programing Languages*</th>  
                 <tr style={{height: 15, width: 50, background:withTheme}}>
-                  <PrograminLanguage add={addNewRow2} delete={clickOnDelete2} programingList={programingList} />
+                  <PrograminLanguage add={addNewRow2} delete={clickOnDelete2} programingList={programingList} 
+                  onChangeprogramingList={onChangeprogramingList}/>
                 </tr>
               <th>Frameworks*</th>  
                 <tr style={{height: 15, width: 50, background:withTheme}}>
-                  <Frameworks add={addNewRow3} delete={clickOnDelete3} frameworkList={frameworkList} />
+                  <Frameworks add={addNewRow3} delete={clickOnDelete3} frameworkList={frameworkList}
+                  onChangeframeworkList={onChangeframeworkList} />
                 </tr>
               <th>Databases*</th>  
                 <tr style={{height: 15, width: 50, background:withTheme}}>
-                  <Databases add={addNewRow4} delete={clickOnDelete4} databaseList={databaseList} />
+                  <Databases add={addNewRow4} delete={clickOnDelete4} databaseList={databaseList} 
+                  onChangedatabaseList={onChangedatabaseList}/>
                 </tr>
               <th>Development Techniques*</th>  
                 <tr style={{height: 15, width: 50, background:withTheme}}>
-                  <DevelopmentTechs add={addNewRow5} delete={clickOnDelete5} developmenttechList={developmenttechList} />
+                  <DevelopmentTechs add={addNewRow5} delete={clickOnDelete5} developmenttechList={developmenttechList}
+                  onChangedevelopmenttechList={onChangedevelopmenttechList}/>
                 </tr>
             </table>
             <p className="lead"><i className="fas fa-user"></i> Onboarder's characteristics</p>
@@ -338,7 +420,18 @@ const handleOptionChangeworkingExperience= (e) => {
                   <div>
                     <GenerateQuestionMethod methodologyList={methodologyList} onChangescoreOfMethod={onChangescoreOfMethod} scoreOfMethod={scoreOfMethod}/>
                   </div>
-
+                  <div>
+                    <GenerateQuestionProLanguage programingList={programingList} onChangescoreOfProLanguage={onChangescoreOfProLanguage} scoreOfProLanguage={scoreOfProLanguage}/>
+                  </div>
+                  <div>
+                    <GenerateQuestionFramework frameworkList={frameworkList} onChangescoreOfFramework={onChangescoreOfFramework} scoreOfFramework={scoreOfFramework}/>
+                  </div>
+                  <div>
+                    <GenerateQuestionDatabase databaseList={databaseList} onChangescoreOfDb={onChangescoreOfDb} scoreOfDb={scoreOfDb}/>
+                  </div>
+                  <div>
+                    <GenerateQuestionDevptech developmenttechList={developmenttechList} onChangescoreOfDevpTech={onChangescoreOfDevpTech} scoreOfDevpTech={scoreOfDevpTech}/>
+                  </div>
             <table className="table" style={{width:710, height:20}}>
                 <th>Are you new to this company ?</th>
                   <tr>
@@ -347,7 +440,7 @@ const handleOptionChangeworkingExperience= (e) => {
                           onChange={handleOptionChangeYES}
                           value={ScoreOfquestionGoal1}/>
                           <span className="checkmarkRadio"></span>
-                      </label>
+                    </label>
                       <label className="containerRadio"> No
                           <input type="radio" name="newToCompany" checked={ScoreOfquestionGoal1} 
                           onChange={handleOptionChangeNO} 

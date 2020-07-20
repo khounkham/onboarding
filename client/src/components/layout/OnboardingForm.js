@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Onboarding from '../onboardings/Onboarding';
-import Onboarders from '../onboardings/Onboarders';
+import OnboardingOptions from '../onboardingSchemes/SchemeOptions';
 
 export class OnboardingForm extends Component {
   state = {step:1,};
@@ -31,22 +31,20 @@ render(){
       return (
         <Onboarding 
           nextStep={this.nextStep}
-          handleChange = {this.handleChange}
         />
       )
       case 2: 
         return (
-          <Onboarders 
+          <div><h1> Onboarding Schemes Selection </h1>
+          <OnboardingOptions
             nextStep={this.nextStep}
-            handleChange = {this.handleChange}
             prevStep={this.prevStep}
           />
+          </div>
         )
       case 3: 
-        return <h1> Onboarding Schemes Selection </h1>
-      case 4: 
         return <h1> The final checklist of activities and goals and confirm</h1>
-      case 5: 
+      case 4: 
         return <h1> Success</h1>
       }
     }

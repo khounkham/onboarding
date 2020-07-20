@@ -6,20 +6,26 @@ const Frameworks = (props) => {
       label: 'django'
     },
     {
-      name: 'RubyonRails',
+      name: 'Ruby on Rails',
       label: 'Ruby on rails'
     },
     {
       name: 'React',
       label: 'React'
     }];
+const onChangeSelect = (i, e) => {
+      //props.generateQuestion(e.target.value)
+      console.log('selected', e.target.value);
+      props.onChangeframeworkList(i, e.target.value);
+    };
   return (
     props.frameworkList.map((val, idx) => {
       let frameworkName =`frameworkName-${idx}`
       return(
         <table key={val.index} style={{margin: 1, width:720, height: 20, border:1}}>
           <th className="">
-            <select name="frameworkName" id={frameworkName} data-id={idx} style={{margin: 1, width:500}} className='dropDownListSelect'>
+            <select name="frameworkName" id={frameworkName} data-id={idx} style={{margin: 1, width:500}} 
+            className='dropDownListSelect' onChange={e => onChangeSelect(idx, e)} value={val.frameworkName}>
               {framework.map(f=>(<option value={f.name}>{f.label}</option>))}
             </select> {'  '}
             { 
